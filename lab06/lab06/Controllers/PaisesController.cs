@@ -46,7 +46,7 @@ namespace lab05.Controllers
     }
 
     [HttpGet]
-    public ActionResult EditarPais(int? identificador) {
+    public ActionResult EditarPais(int identificador) {
       ActionResult vista;
       try
       {
@@ -82,12 +82,12 @@ namespace lab05.Controllers
     }
 
 
-    [HttpPost]
-    public ActionResult BorrarPais(PaisesModel pais) {
+    [HttpGet]
+    public ActionResult BorrarPais(int identificador) {
       try
       {
         var paisesHandler = new PaisesHandler();
-        paisesHandler.BorrarPais(pais);
+        paisesHandler.BorrarPais(identificador);
         return RedirectToAction("Index", "Paises");
       }
       catch

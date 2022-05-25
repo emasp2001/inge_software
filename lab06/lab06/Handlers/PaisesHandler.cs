@@ -64,6 +64,7 @@ namespace lab05.Handlers
                         Continente = @Continente
                       WHERE Id=@Id ";
       var comandoParaConsulta = new SqlCommand(consulta, connection);
+      comandoParaConsulta.Parameters.AddWithValue("@Id", pais.Id);
       comandoParaConsulta.Parameters.AddWithValue("@Nombre", pais.Nombre);
       comandoParaConsulta.Parameters.AddWithValue("@Idioma", pais.Idioma);
       comandoParaConsulta.Parameters.AddWithValue("@Continente", pais.Continente);
@@ -75,10 +76,10 @@ namespace lab05.Handlers
       return exito;
     }
 
-    public bool BorrarPais(PaisesModel pais) {
+    public bool BorrarPais(int identificador) {
       var consulta = @"DELETE [dbo].[Pais] WHERE Id = @Id";
       var query = new SqlCommand(consulta, connection);
-      query.Parameters.AddWithValue("@Id", pais.Id);
+      query.Parameters.AddWithValue("@Id", identificador);
 
       connection.Open();
       bool exito = query.ExecuteNonQuery() >= 1;
